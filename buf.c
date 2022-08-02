@@ -15,8 +15,7 @@ buf new_buf(const char* string, size_t capacity) {
   buf b = {
     .buf = malloc(capacity),
     .len = 0,
-    .capacity = capacity,
-    .freed = 0
+    .capacity = capacity
   };
   int len = strnlen(string,capacity);
   strncpy(b.buf, string, len);
@@ -41,12 +40,11 @@ void free_buf(buf* b) {
     free(b->buf);
   }
   b->buf = NULL;
-  b->freed = 1;
 }
 
 // clear out a buffers contents
 int clear_buf(buf* b){
-  if (b->freed || b->buf == NULL) {
+  if (b->buf == NULL) {
     return 1;
   }
   memset(b->buf, '\0', b->capacity);
@@ -56,8 +54,7 @@ int clear_buf(buf* b){
 
 // append to a buffer
 int append_buf(const char* string, buf* bp) {
-  // cant write to a freed buffer
-  if (bp->freed) {
+  if (bp->buf == NULL) {
     errno = 1;
     return 1;
   }
@@ -87,9 +84,7 @@ int is_empty(buf b) {
 // print the buffer contents
 void print_buf(buf b) {
   printf("BUF [\n");
-  if (b.freed) {
-    printf("  freed buffer\n");
-  } else if (b.buf == NULL) {
+  if (b.buf == NULL) {
     printf("  null buffer\n");
   } else {
     printf("  %d / %lu\n", b.len, b.capacity);
@@ -101,7 +96,7 @@ void print_buf(buf b) {
 // get a buffer element but check bounds
 // fails silently, returning '\0'
 char get_buf_element(buf b, int i) {
-  if (b.freed || b.buf == NULL || i >= b.capacity || i < 0) {
+  if (b.buf == NULL || i >= b.capacity || i < 0) {
     return '\0';
   } else {
     return b.buf[i];
@@ -110,7 +105,7 @@ char get_buf_element(buf b, int i) {
 
 // returns an exit code
 int set_buf_element(buf* b, int i, char c) {
-  if (b->freed || b->buf == NULL || i >= b->capacity || i < 0) {
+  if (b->buf == NULL || i >= b->capacity || i < 0) {
     return 1;
   } else {
     b->buf[i] = c;

@@ -12,7 +12,6 @@ typedef struct buf {
   char* buf;       // the actual buffer
   size_t capacity; // size of buffer
   int len;         // length of contents
-  int freed;       // if using dynamic memory, freed flag
 } buf;
 
 // malloc and fill a buffer
