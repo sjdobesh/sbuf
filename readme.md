@@ -7,7 +7,7 @@ generate and link a `.so` with the make file
 git clone origin
 cd buf
 make object
-" or
+# or
 make lib
 ```
 
