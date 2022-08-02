@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "buf.h"
 
-#define VERBOSE 1
+#define VERBOSE 0
 
 void dbug(const char* string) {
   if (VERBOSE) {
