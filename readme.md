@@ -6,6 +6,8 @@ generate and link a `.so` with the make file
 ```bash
 git clone origin
 cd buf
+make object
+" or
 make lib
 ```
 
