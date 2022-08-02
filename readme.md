@@ -1,6 +1,14 @@
 # buf
 a very bad string buffer module for c applications. very dumb, use cautiously.
 
+## usage
+generate and link a `.so` with the make file
+```bash
+git clone origin
+cd buf
+make lib
+```
+
 ## structures
 
 a malloc'd char buffer
