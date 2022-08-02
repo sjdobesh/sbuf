@@ -61,7 +61,7 @@ print the buffer contents
 void print_buf(buf b);
 ```
 
-### safe accessors
+safe accessors
 ```c
 char get_buf_element(buf b, int i);
 int set_buf_element(buf* b, int i, char c);
