@@ -2,13 +2,13 @@
 a very bad string buffer module for c applications. very dumb, use cautiously.
 
 ## usage
-generate and link a `.so` with the make file
 ```bash
-git clone origin
-cd buf
+# generate a .so and copy to /usr/local/lib
+./install_lib
+# or generate a static object
 make object
-# or
-make lib
+# or compile for testing
+make test
 ```
 
 ## structures
