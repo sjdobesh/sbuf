@@ -3,8 +3,8 @@ a very bad string buffer module for c applications. very dumb, use cautiously.
 
 ## usage
 ```bash
-# generate a .so and copy to /usr/local/lib
-./install_lib
+# generate a .so and copy .so -> /usr/lib, .h -> /usr/include
+make lib
 # or generate a static object
 make object
 # or compile for testing

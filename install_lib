@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-make clean
-make lib
-sudo cp libbuf.so /usr/local/lib
-make clean
