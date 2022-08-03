@@ -4,7 +4,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "buf.h"
+#include "sbuf.h"
 
 #define VERBOSE 0
 
@@ -18,20 +18,19 @@ void dbug(const char* string) {
 int test_basic() {
 
   dbug("\nStarting Basic Tests...\n");
-
   dbug("\n    ****    \n\n");
   dbug("allocating...\n");
-  buf b = new_buf("hello", 11);
+  sbuf b = new_sbuf("hello", 11);
   if (VERBOSE)
-    print_buf(b);
+    print_sbuf(b);
 
   dbug("\n    ****    \n\n");
   dbug("appending...\n");
-  if (append_buf(" world!\n", &b)) {
+  if (append_sbuf(" world!\n", &b)) {
     printf("appending failed\n");
   }
   if (VERBOSE)
-    print_buf(b);
+    print_sbuf(b);
 
   dbug("\n    ****    \n\n");
   dbug("is_full?...\n");
@@ -43,10 +42,10 @@ int test_basic() {
 
   dbug("\n    ****    \n\n");
   dbug("reallocing...\n");
-  realloc_buf(&b, 12);
+  realloc_sbuf(&b, 12);
   dbug("shouldn't be full anymore...\n");
   if (VERBOSE)
-    print_buf(b);
+    print_sbuf(b);
   if (is_full(b)) {
     dbug("failed to realloc\n");
   }
@@ -54,15 +53,15 @@ int test_basic() {
 
   dbug("\n    ****    \n\n");
   dbug("poking...\n");
-  if (set_buf_element(&b, 1, 'i')) {
+  if (set_sbuf_index(&b, 1, 'i')) {
     dbug("poking failed\n");
   }
   if (VERBOSE)
-    print_buf(b);
+    print_sbuf(b);
 
   dbug("\n    ****    \n\n");
   dbug("getting...\n");
-  char element = get_buf_element(b, 1);
+  char element = get_sbuf_index(b, 1);
   if (element == '\0') {
     dbug("getting failed\n");
   }
@@ -71,11 +70,11 @@ int test_basic() {
 
   dbug("\n    ****    \n\n");
   dbug("clearing...\n");
-  if (clear_buf(&b)) {
+  if (clear_sbuf(&b)) {
     dbug("failed to clear\n");
   }
   if (VERBOSE)
-    print_buf(b);
+    print_sbuf(b);
 
   dbug("\n    ****    \n\n");
   dbug("is_empty?...\n");
@@ -87,9 +86,9 @@ int test_basic() {
 
   dbug("\n    ****    \n\n");
   dbug("freeing...\n");
-  free_buf(&b);
+  free_sbuf(&b);
   if (VERBOSE)
-    print_buf(b);
+    print_sbuf(b);
 
   return 0;
 }
@@ -101,10 +100,10 @@ int test_errors() {
   dbug("\n    ****    \n\n");
   dbug("allocating with too little...\n");
   // check that we cant overflow upon creation
-  int allocate = 3;
-  buf b = new_buf("hiiiiiiiii", allocate);
+  size_t allocate = 3;
+  sbuf b = new_sbuf("hiiiiiiiii", allocate);
   if (VERBOSE)
-    print_buf(b);
+    print_sbuf(b);
   // only 2 should've been copied
   if (b.len != allocate || strlen(b.buf) != allocate) {
     dbug("error allocating\n");
@@ -115,10 +114,10 @@ int test_errors() {
   dbug("\n    ****    \n\n");
   dbug("reallocate to truncate...\n");
   // realloc to truncate
-  int reallocate = 2;
-  realloc_buf(&b, reallocate);
+  size_t reallocate = 2;
+  realloc_sbuf(&b, reallocate);
   if (VERBOSE)
-    print_buf(b);
+    print_sbuf(b);
   if (b.len != reallocate || strlen(b.buf) != reallocate) {
     dbug("reallocate error\n");
     return 1;
@@ -128,18 +127,18 @@ int test_errors() {
   // try appending two bufs
   dbug("\n    ****    \n\n");
   dbug("append buf to buf: C->A\n");
-  buf a = new_buf("hello ", 12);
-  buf c = new_buf("world!", 12);
+  sbuf a = new_sbuf("hello ", 12);
+  sbuf c = new_sbuf("world!", 12);
   dbug("A:\n");
   if (VERBOSE)
-    print_buf(a);
+    print_sbuf(a);
   dbug("C:\n");
   if (VERBOSE)
-    print_buf(c);
-  append_buf(c.buf, &a);
-  int sum = 12;
+    print_sbuf(c);
+  append_sbuf(c.buf, &a);
+  size_t sum = 12;
   if (VERBOSE)
-    print_buf(a);
+    print_sbuf(a);
   if (a.len != sum || strlen(a.buf) != sum) {
     dbug("append error\n");
     return 1;
@@ -149,11 +148,11 @@ int test_errors() {
 
   dbug("\n    ****    \n\n");
   dbug("bad indicies\n");
-  if ('\0' != get_buf_element(b, 100)) {
+  if ('\0' != get_sbuf_index(b, 100)) {
     dbug("error, should've failed invalid buffer access\n");
     return 1;
   }
-  if ('\0' != get_buf_element(b, -100)) {
+  if ('\0' != get_sbuf_index(b, -100)) {
     dbug("error, should've failed invalid buffer access\n");
     return 1;
   }
