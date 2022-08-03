@@ -3,6 +3,7 @@
 // test file for buf module
 
 #include <stdio.h>
+#include <string.h>
 #include "buf.h"
 
 #define VERBOSE 0
@@ -96,14 +97,58 @@ int test_basic() {
 // try to do stuff you shouldnt
 int test_errors() {
   dbug("\nStarting Error Tests...\n");
+
+  dbug("\n    ****    \n\n");
+  dbug("allocating with too little...\n");
   // check that we cant overflow upon creation
-  buf b = new_buf("hiiiiiiiii", 2);
+  int allocate = 3;
+  buf b = new_buf("hiiiiiiiii", allocate);
   if (VERBOSE)
     print_buf(b);
   // only 2 should've been copied
-  if (b.len != 2) {
+  if (b.len != allocate || strlen(b.buf) != allocate) {
+    dbug("error allocating\n");
     return 1;
   }
+  dbug("pass\n");
+
+  dbug("\n    ****    \n\n");
+  dbug("reallocate to truncate...\n");
+  // realloc to truncate
+  int reallocate = 2;
+  realloc_buf(&b, reallocate);
+  if (VERBOSE)
+    print_buf(b);
+  if (b.len != reallocate || strlen(b.buf) != reallocate) {
+    dbug("reallocate error\n");
+    return 1;
+  }
+  dbug("pass\n");
+
+  // try appending two bufs
+  dbug("\n    ****    \n\n");
+  dbug("append buf to buf: C->A\n");
+  buf a = new_buf("hello ", 12);
+  buf c = new_buf("world!", 12);
+  dbug("A:\n");
+  if (VERBOSE)
+    print_buf(a);
+  dbug("C:\n");
+  if (VERBOSE)
+    print_buf(c);
+  append_buf(c.buf, &a);
+  int sum = 12;
+  if (VERBOSE)
+    print_buf(a);
+  if (a.len != sum || strlen(a.buf) != sum) {
+    dbug("append error\n");
+    return 1;
+  }
+  dbug("pass\n");
+
+
+  dbug("\n    ****    \n\n");
+  dbug("bad indicies\n");
   if ('\0' != get_buf_element(b, 100)) {
     dbug("error, should've failed invalid buffer access\n");
     return 1;
@@ -113,10 +158,13 @@ int test_errors() {
     return 1;
   }
   return 0;
+  dbug("pass\n");
 }
 
 int main() {
   // intended usage, just uses each function once
-  printf("Basic tests: %s\n\n", (test_basic() ? "FAIL": "PASS"));
-  printf("Error tests: %s\n", (test_errors() ? "FAIL": "PASS"));
+  printf("Basic tests:");
+  printf("%s\n", (test_basic() ? "FAIL": "PASS"));
+  printf("Error tests:");
+  printf("%s\n", (test_errors() ? "FAIL": "PASS"));
 }

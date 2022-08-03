@@ -11,11 +11,11 @@
 typedef struct buf {
   char* buf;       // the actual buffer
   size_t capacity; // size of buffer
-  int len;         // length of contents
+  size_t len;      // length of contents
 } buf;
 
 // allocate a new buffer
-buf new_buf(const char* string, size_t capacity);
+buf new_buf(char* string, size_t capacity);
 // reallocate an existing buffer, possibly truncating its contents
 int realloc_buf(buf* b, size_t new_capacity);
 // free a buffers internal pointer
@@ -24,7 +24,7 @@ void free_buf(buf* b);
 // clear a buffers contents and reset its length
 int clear_buf(buf* bp);
 // append to a buffer
-int append_buf(const char* string, buf* bp);
+int append_buf(char* string, buf* bp);
 
 // check if buffer is full
 int is_full(buf b);
@@ -35,7 +35,7 @@ int is_empty(buf b);
 void print_buf(buf b);
 
 // safe accessors
-char get_buf_element(buf b, int i);
-int set_buf_element(buf* b, int i, char c);
+char get_buf_element(buf b, size_t i);
+int set_buf_element(buf* b, size_t i, char c);
 
 #endif

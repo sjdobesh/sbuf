@@ -12,9 +12,9 @@
 
 // allocate a new buffer
 // if allocation fails, return an empty buffer with .capacity=0 and set errno
-buf new_buf(const char* string, size_t capacity) {
+buf new_buf(char* string, size_t capacity) {
   buf b = {
-    .buf = malloc(capacity),
+    .buf = malloc(capacity + 1), // add room for '\0'
     .len = 0,
     .capacity = capacity
   };
@@ -22,8 +22,9 @@ buf new_buf(const char* string, size_t capacity) {
     b.capacity = 0;
     errno = ENOMEM;
   } else {
-    int len = strnlen(string,capacity);
+    int len = strnlen(string, capacity);
     strncpy(b.buf, string, len);
+    b.buf[capacity] = '\0';
     b.len = len;
   }
   return b;
@@ -32,14 +33,15 @@ buf new_buf(const char* string, size_t capacity) {
 // reallocate an existing buffer, possibly truncating its contents
 // returns an exit code and sets errno on failure
 int realloc_buf(buf* b, size_t new_capacity) {
-  buf* realloc_b = realloc(b->buf, new_capacity);
-  if (realloc_b == 0) {
+  char* buf = realloc(b->buf, new_capacity + 1);
+  if (buf == 0) {
     errno = ENOMEM;
     return 1;
   }
-  b = realloc_b;
+  b->buf = buf;
   b->capacity = new_capacity;
-  if (new_capacity < b->len) {
+  b->buf[b->capacity] = '\0';
+  if (new_capacity <= b->len) {
     b->len = new_capacity;
   }
   return 0;
@@ -70,22 +72,22 @@ int clear_buf(buf* b){
 
 // append to a buffer
 // returns an exit code and set errno on failure
-int append_buf(const char* string, buf* bp) {
+int append_buf(char* string, buf* b) {
   // can't append to a null buffer
-  if (bp->buf == NULL) {
+  if (b->buf == NULL) {
     errno = EPERM;
     return 1;
   }
   // cant append to a full buffer either
-  if (is_full(*bp)) {
+  if (is_full(*b)) {
     errno = ENOMEM;
     return 1;
   }
   // check length requirements and copy maximum allowed
-  int space = bp->capacity - bp->len;
+  int space = b->capacity - b->len;
   int len = strnlen(string, space);
-  strncat(bp->buf, string, len);
-  bp->len += len;
+  strncat(b->buf, string, len);
+  b->len += len;
   return 0;
 }
 
@@ -115,7 +117,7 @@ void print_buf(buf b) {
   if (b.buf == NULL) {
     printf("  null buffer\n");
   } else {
-    printf("  %d / %lu\n", b.len, b.capacity);
+    printf("  %lu / %lu\n", b.len, b.capacity);
     printf("  buf: %s\n", b.buf);
   }
   printf("]\n");
@@ -123,7 +125,7 @@ void print_buf(buf b) {
 
 // get a buffer element within bounds
 // returns '\0' on failure and sets errno
-char get_buf_element(buf b, int i) {
+char get_buf_element(buf b, size_t i) {
   if (b.buf == NULL || i >= b.capacity || i < 0) {
     return '\0';
   } else {
@@ -133,7 +135,7 @@ char get_buf_element(buf b, int i) {
 
 // set a buffer element within bounds
 // returns an exit code and sets errno
-int set_buf_element(buf* b, int i, char c) {
+int set_buf_element(buf* b, size_t i, char c) {
   if (b->buf == NULL || i >= b->capacity || i < 0) {
     return 1;
   } else {
