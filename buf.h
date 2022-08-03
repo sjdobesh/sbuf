@@ -14,17 +14,17 @@ typedef struct buf {
   int len;         // length of contents
 } buf;
 
-// malloc and fill a buffer
+// allocate a new buffer
 buf new_buf(const char* string, size_t capacity);
-// realloc buffer space and handle truncation
+// reallocate an existing buffer, possibly truncating its contents
 int realloc_buf(buf* b, size_t new_capacity);
-// free the buffer
+// free a buffers internal pointer
 void free_buf(buf* b);
 
-// append to the buffer contents
-int append_buf(const char* string, buf* bp);
-// clear out a buffers contents
+// clear a buffers contents and reset its length
 int clear_buf(buf* bp);
+// append to a buffer
+int append_buf(const char* string, buf* bp);
 
 // check if buffer is full
 int is_full(buf b);
