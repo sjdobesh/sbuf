@@ -15,13 +15,11 @@
 buf new_buf(char* string, size_t capacity) {
   buf b = {
     .buf = malloc(capacity + 1), // add room for '\0'
-    .len = 0,
-    .capacity = capacity
   };
-  if (b.buf == 0) {
-    b.capacity = 0;
+  if (b.buf == NULL) {
     errno = ENOMEM;
   } else {
+    b.capacity = capacity;
     int len = strnlen(string, capacity);
     strncpy(b.buf, string, len);
     b.buf[capacity] = '\0';
@@ -34,7 +32,7 @@ buf new_buf(char* string, size_t capacity) {
 // returns an exit code and sets errno on failure
 int realloc_buf(buf* b, size_t new_capacity) {
   char* buf = realloc(b->buf, new_capacity + 1);
-  if (buf == 0) {
+  if (buf == NULL) {
     errno = ENOMEM;
     return 1;
   }
