@@ -17,8 +17,8 @@ typedef struct buf {
 // malloc and fill a buffer
 buf new_buf(const char* string, size_t capacity);
 // realloc buffer space and handle truncation
-void realloc_buf(buf* b, size_t new_capacity);
-// try to free the buffer
+int realloc_buf(buf* b, size_t new_capacity);
+// free the buffer
 void free_buf(buf* b);
 
 // append to the buffer contents
