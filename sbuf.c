@@ -32,6 +32,12 @@ sbuf new_sbuf(char* string, size_t capacity) {
   return s;
 }
 
+// allocate the smallest buffer possible
+sbuf new_sbuf_small(char* string) {
+  int len = strlen(string);
+  return new_sbuf(string, len);
+}
+
 // reallocate an existing buffer, possibly truncating its contents
 // returns an exit code and sets errno on failure
 int realloc_sbuf(sbuf* s, size_t new_capacity) {

@@ -38,6 +38,11 @@ sbuf new_sbuf(const char* string, size_t capacity);
 allocate a new buffer. if allocation fails, return an empty buffer with .capacity=0 and set errno.
 
 ```c
+sbuf new_sbuf_small(char* string);
+```
+allocate the smallest possible buffer. returns equivalent to `new_sbuf()`
+
+```c
 void realloc_sbuf(sbuf* s, size_t new_capacity);
 ```
 reallocate an existing buffer, possibly truncating its contents.

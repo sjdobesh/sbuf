@@ -19,6 +19,8 @@ typedef struct sbuf {
 
 // allocate a new buffer
 sbuf new_sbuf(char* string, size_t capacity);
+// allocate the minimum required space for the string
+sbuf new_sbuf_small(char* string);
 // reallocate an existing buffer, possibly truncating its contents
 int realloc_sbuf(sbuf* b, size_t new_capacity);
 // free a buffers internal pointer
