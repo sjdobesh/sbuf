@@ -24,3 +24,7 @@ build/*
 # binaries
 bin/
 bin/*
+
+# documentation
+dox/
+dox/*

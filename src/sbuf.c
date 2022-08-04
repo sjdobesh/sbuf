@@ -16,8 +16,10 @@
 /* UTIL *---------------------------------------------------------------------*/
 
 /**
- * check if a buffer is full
- * returns a -1 on error and sets errno
+ * checks if a buffer is full.
+ *
+ * @param  s the sbuf to check
+ * @return a boolean, or a -1 on error and sets errno
  */
 int is_full(sbuf s) {
   if (s.buf == NULL) {
@@ -28,8 +30,10 @@ int is_full(sbuf s) {
 }
 
 /**
- * check if a buffer is empty
- * returns a -1 on error and sets errno
+ * checks if a buffer is empty.
+ *
+ * @param s the sbuf to check
+ * @return a boolean, or a -1 on error and sets errno
  */
 int is_empty(sbuf s) {
   if (s.buf == NULL) {
@@ -40,7 +44,10 @@ int is_empty(sbuf s) {
 }
 
 /**
- * print the buffer contents
+ * prints the buffer members.
+ *
+ * @param s the sbuf to print
+ * @return void
  */
 void print_sbuf(sbuf s) {
   printf("SBUF [\n");
@@ -57,10 +64,13 @@ void print_sbuf(sbuf s) {
 /* ALLOCATION *---------------------------------------------------------------*/
 
 /**
- * allocate a new buffer
- * if allocation fails, return an empty buffer with .capacity=0 and set errno
- * note that allocation is actually 1 larger than specified
- * buf[capacity + 1] is always string terminator to prevent strfunction errors
+ * allocates a new buffer.
+ * note that allocation is actually 1 larger than specified.
+ * buf[capacity + 1] is always string terminator to prevent strfunction errors.
+ *
+ * @param string the data to store in the buffer
+ * @param capacity the max length of string the buffer can store
+ * @return a newly allocated sbuf struct, empty on failure.
  */
 sbuf new_sbuf(char* string, size_t capacity) {
   sbuf s;
@@ -79,7 +89,11 @@ sbuf new_sbuf(char* string, size_t capacity) {
 }
 
 /**
- * allocate the smallest buffer possible
+ * allocates the smallest buffer possible.
+ * note potentially unssge due to strlen use.
+ *
+ * @param string the data to store in the buffer
+ * @return a newly allocated sbuf struct, empty on failure.
  */
 sbuf new_sbuf_small(char* string) {
   int len;
@@ -88,8 +102,11 @@ sbuf new_sbuf_small(char* string) {
 }
 
 /**
- * reallocate an existing buffer, possibly truncating its contents
- * returns an exit code and sets errno on failure
+ * reallocates an existing buffer, possibly truncating its contents.
+ *
+ * @param s the sbuf to reallocate
+ * @param new_capacity the new size to allocate the sbuf to
+ * @return an exit code, setting errno on failure.
  */
 int realloc_sbuf(sbuf* s, size_t new_capacity) {
   char* buf;
@@ -108,9 +125,12 @@ int realloc_sbuf(sbuf* s, size_t new_capacity) {
 }
 
 /**
- * free a buffers internal pointer
- * updates capacity and length of buffer
- * will not double free
+ * frees a sbuf's internal pointer.
+ * updates `.capacity` and `len`
+ * and will not double free.
+ *
+ * @param s the sbuf to free
+ * @return void
  */
 void free_sbuf(sbuf* s) {
   if (s->buf != NULL) {
@@ -125,8 +145,11 @@ void free_sbuf(sbuf* s) {
 /* FUNCTIONS *----------------------------------------------------------------*/
 
 /**
- * append to a buffer
- * returns an exit code and set errno on failure
+ * appends a string to a sbuf.
+ *
+ * @param string the content to append
+ * @param s the sbuf to append to
+ * @return an exit code, setting errno on failure
  */
 int append_sbuf(char* string, sbuf* s) {
   int space, len;
@@ -147,8 +170,10 @@ int append_sbuf(char* string, sbuf* s) {
 }
 
 /**
- * clear a buffers contents and reset its length
- * returns an exit code and set errno on failure
+ * clear a sbuf's contents and reset its length.
+ *
+ * @param s the sbuf to clear
+ * @return an exit code, setting errno on failure
  */
 int clear_sbuf(sbuf* s){
   if (s->buf == NULL) {
@@ -161,14 +186,20 @@ int clear_sbuf(sbuf* s){
 }
 
 /**
- * mallocs a duplicate sbuf
+ * mallocs a duplicate sbuf.
+ *
+ * @param s the sbuf data to duplicate
+ * @return a newly malloc'd sbuf
  */
 sbuf copy_sbuf(sbuf s) {
   return new_sbuf(s.buf, s.capacity);
 }
 
 /**
- * shrink a buffer to the size of its current contents
+ * shrink a sbuf to the size of its current contents.
+ *
+ * @param s the sbuf ptr to shrink
+ * @return an exit code, setting errno on failure
  */
 int shrink_sbuf(sbuf* s) {
   /* check if already at minimum size for contents */
@@ -183,15 +214,21 @@ int shrink_sbuf(sbuf* s) {
 /* ACCESSORS *----------------------------------------------------------------*/
 
 /**
- * return the buffer pointer (not a copy)
+ * returns the internal buffer ptr of a sbuf.
+ *
+ * @param s the sbuf to get string from
+ * @return the char ptr to the sbuf's buffer (not a copy)
  */
 char* get_sbuf(sbuf s) {
   return s.buf;
 }
 
 /**
- * clear and set the contents of the buffer
- * returns an exit code
+ * clear and set the contents of the sbuf.
+ *
+ * @param s the sbuf ptr to clear and set
+ * @param string the c string to store in s
+ * @return an exit code, setting errno on failure
  */
 int set_sbuf(sbuf* s, char* string) {
   /* clear handles error checking */
@@ -204,8 +241,11 @@ int set_sbuf(sbuf* s, char* string) {
 }
 
 /**
- * get a buffer element within bounds
- * returns '\0' on failure and sets errno
+ * get a sbuf element by index within bounds.
+ *
+ * @param s sbuf to get data from
+ * @param i index to access
+ * @return the char in s at index i. returns '\0' and sets errno on failure
  */
 char get_sbuf_index(sbuf s, size_t i) {
   if (s.buf == NULL || i >= s.capacity) {
@@ -216,9 +256,13 @@ char get_sbuf_index(sbuf s, size_t i) {
 }
 
 /**
- * set a buffer element within bounds
- * returns an exit code and sets errno
- */
+ * set a sbuffer element by index within bounds.
+ *
+ * @param s the sbuf ptr to set
+ * @param i the index to set
+ * @param c the char to set i to
+ * @return an exit code, setting errno on failure
+ **/
 int set_sbuf_index(sbuf* s, size_t i, char c) {
   if (s->buf == NULL || i >= s->capacity) {
     return 1;
