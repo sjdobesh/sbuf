@@ -10,15 +10,15 @@ OBJ_DIR := obj
 LIB_DIR := lib
 BIN_DIR := bin
 TEST_DIR := test
-
+TEMP_DIRS := $(OBJ_DIR) $(LIB_DIR) $(BIN_DIR)
 # set targets
 # executable
 TEST := $(BIN_DIR)/test
 # srcs
-SRC := $(SRC_DIR)/$(STEM).c
-TEST_SRC := $(TEST_DIR)/test.c
+SRC := $(wildcard $(SRC_DIR)/*.c)
+TEST_SRC := $(wildcard $(TEST_DIR)/*.c)
 # objects
-SRC_OBJ := $(OBJ_DIR)/$(STEM).o
+SRC_OBJ := $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 TEST_OBJ := $(OBJ_DIR)/test.o
 # libs
 STATIC_LIB := $(LIB_DIR)/lib$(STEM).a
@@ -27,6 +27,8 @@ SHARED_LIB := $(LIB_DIR)/lib$(STEM).so
 # set flags
 CPPFLAGS := -fpic -MMD -MP
 CFLAGS := -Wall -Wextra -Werror -ansi -pedantic -Os
+# LDFLAGS :=
+# LDLIBS :=
 LIBFLAGS := -shared
 
 # set rules
@@ -34,31 +36,34 @@ LIBFLAGS := -shared
 .PHONY: all test lib clean
 
 all: test lib
+	echo " "
 	./$(TEST)
 
 test: $(TEST)
 
 lib: $(SHARED_LIB) $(STATIC_LIB)
 
-$(TEST): $(SRC_OBJ) $(TEST_OBJ) | $(BIN_DIR)
+
+$(TEST): $(SRC_OBJ) $(TEST_OBJ)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
-$(STATIC_LIB): $(SRC_OBJ) | $(LIB_DIR)
-	ar -rs $^ -o $@
+$(STATIC_LIB): $(SRC_OBJ)
+	ar -rs $@ $<
 
-$(SHARED_LIB): $(SRC_OBJ) | $(LIB_DIR)
-	$(CC) $(LIBFLAGS) $^ -o $@
+$(SHARED_LIB): $(SRC_OBJ)
+	$(CC) $(LIBFLAGS) $< -o $@
 
-$(SRC_OBJ): $(SRC) | $(OBJ_DIR)
+$(SRC_OBJ): $(SRC)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-$(TEST_OBJ): $(TEST_SRC) | $(OBJ_DIR)
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+$(TEST_OBJ): $(TEST_SRC)
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c -I$(SRC_DIR) $< -o $@
 
-$(BIN_DIR) $(OBJ_DIR) $(LIB_DIR):
-	mkdir -p $@
-
+# clean all temporary directories
 clean:
-	@$(RM) -rfv $(BIN_DIR) $(LIB_DIR) $(OBJ_DIR)
+	@$(RM) -rfv $(TEMP_DIRS)
 
 -include $(OBJ:.o=.d)
+
+# make all directories
+$(shell mkdir -p $(TEMP_DIRS))
