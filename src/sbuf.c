@@ -1,10 +1,12 @@
-/**
+/*
  * samantha jane 2022
  * sbuf.c
  * dynamic string buffer
  *----------------------------------------------------------------------------*/
 
-/* define which strncpy to use */
+/**
+ * define which strncpy to use
+ **/
 #define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <string.h>

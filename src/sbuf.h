@@ -1,4 +1,4 @@
-/**
+/*
  * samantha jane 2022
  * sbuf.h
  * dynamic string buffer
@@ -9,11 +9,13 @@
 
 #include <stddef.h>
 
-/* a malloc'd char buffer */
+/**
+ * a malloc'd string buffer. tracks capacity and length of a dynamic ptr.
+ **/
 typedef struct sbuf {
-  char* buf;       /* the actual buffer  */
-  size_t capacity; /* size of buffer     */
-  size_t len;      /* length of contents */
+  char* buf;       /* the actual char buffer  */
+  size_t capacity; /* size of buffer          */
+  size_t len;      /* length of contents      */
 } sbuf;
 
 /* UTIL *---------------------------------------------------------------------*/
