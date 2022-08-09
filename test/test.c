@@ -8,7 +8,7 @@
 #include <string.h>
 #include "sbuf.h"
 
-#define VERBOSE 0
+#define VERBOSE 1
 
 /* toggleable dbug print */
 void dbug(const char* string) {
@@ -24,7 +24,7 @@ int test_basic() {
 
   dbug("\n\n**** BASIC TESTS ****\n");
   dbug("allocating...\n");
-  b = new_sbuf("hello", 11);
+  b = new_sbuf_size("hello", 11);
   if (VERBOSE)
     print_sbuf(b);
 
@@ -100,8 +100,8 @@ int test_allocation() {
   dbug("\n\n**** ALLOCATION TESTS ****\n");
 
   /* check that a standard allocation works as expected */
-  dbug("test 1 - new_sbuf:\n");
-  a = new_sbuf("Test test test!", 32);
+  dbug("test 1 - new_sbuf_size:\n");
+  a = new_sbuf_size("Test test test!", 32);
   if (VERBOSE)
     print_sbuf(a);
   if (a.capacity != 32) {
@@ -117,15 +117,15 @@ int test_allocation() {
     dbug("test 1 pass\n");
   }
 
-  /* check the new_sbuf_small method */
-  dbug("test 2 - new_sbuf_small:\n");
-  b = new_sbuf_small("minimum");
+  /* check the new_sbuf method */
+  dbug("test 2 - new_sbuf:\n");
+  b = new_sbuf("minimum");
   if (VERBOSE)
     print_sbuf(b);
-  if (b.capacity != 32) {
+  if (b.capacity != 7) {
     dbug("[ERROR] capacity\n");
     exit_code = 1;
-  } else if (b.len != 15) {
+  } else if (b.len != 7) {
     dbug("[ERROR] length\n");
     exit_code = 1;
   }
@@ -158,8 +158,10 @@ int test_free() {
 }
 
 int main() {
+  /*
   printf("Basic:");
   printf("  - %s\n", (test_basic() ? "FAIL": "PASS"));
+  */
   printf("Allocation:");
   printf("  - %s\n", (test_allocation() ? "FAIL": "PASS"));
   return 0;

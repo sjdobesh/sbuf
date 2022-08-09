@@ -68,7 +68,7 @@ void print_sbuf(sbuf s) {
 /* ALLOCATION *---------------------------------------------------------------*/
 
 /**
- * allocates a new buffer.
+ * allocates a new buffer of a specific size.
  * note that allocation is actually 1 larger than specified.
  * buf[capacity + 1] is always string terminator to prevent strfunction errors.
  *
@@ -76,7 +76,7 @@ void print_sbuf(sbuf s) {
  * @param capacity the max length of string the buffer can store
  * @return a newly allocated sbuf struct, empty on failure.
  */
-sbuf new_sbuf(char* string, size_t capacity) {
+sbuf new_sbuf_size(char* string, size_t capacity) {
   sbuf s;
   int len;
   errno = 0;
@@ -95,15 +95,13 @@ sbuf new_sbuf(char* string, size_t capacity) {
 
 /**
  * allocates the smallest buffer possible.
- * note potentially unssge due to strlen use.
+ * note potentially unsafe due to strlen use.
  *
  * @param string the data to store in the buffer
  * @return a newly allocated sbuf struct, empty on failure.
  */
-sbuf new_sbuf_small(char* string) {
-  int len;
-  len = strlen(string);
-  return new_sbuf(string, len);
+sbuf new_sbuf(char* string) {
+  return new_sbuf_size(string, strlen(string));
 }
 
 /**
@@ -200,7 +198,7 @@ int clear_sbuf(sbuf* s){
  * @return a newly malloc'd sbuf
  */
 sbuf copy_sbuf(sbuf s) {
-  return new_sbuf(s.buf, s.capacity);
+  return new_sbuf_size(s.buf, s.capacity);
 }
 
 /**

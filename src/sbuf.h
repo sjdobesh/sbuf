@@ -29,10 +29,10 @@ void print_sbuf(sbuf s);
 
 /* ALLOCATION *---------------------------------------------------------------*/
 
-/* allocate a new buffer */
-sbuf new_sbuf(char* string, size_t capacity);
-/* allocate the minimum required space for the string */
-sbuf new_sbuf_small(char* string);
+/* allocate a buffer of the minimum required space for the string */
+sbuf new_sbuf(char* string);
+/* allocate a new buffer with a user defined caacity*/
+sbuf new_sbuf_size(char* string, size_t capacity);
 /* reallocate an existing buffer, possibly truncating its contents */
 int realloc_sbuf(sbuf* b, size_t new_capacity);
 /* free a buffers internal pointer */
