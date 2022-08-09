@@ -28,6 +28,8 @@ var NAVTREE =
       [ "install", "index.html#autotoc_md3", null ],
       [ "include", "index.html#autotoc_md4", null ]
     ] ],
+    [ "<a href=\"https://sjdobesh.github.io/sbuf/html/annotated.html\">structures</a>", "index.html#autotoc_md5", null ],
+    [ "<a href=\"https://sjdobesh.github.io/sbuf/html/globals_func.html\">functions</a>", "index.html#autotoc_md6", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
