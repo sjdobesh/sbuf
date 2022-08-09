@@ -36,13 +36,11 @@ LIBFLAGS := -shared
 .PHONY: all test lib clean
 
 all: test lib
-	echo " "
 	./$(TEST)
 
 test: $(TEST)
 
 lib: $(SHARED_LIB) $(STATIC_LIB)
-
 
 $(TEST): $(SRC_OBJ) $(TEST_OBJ)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@

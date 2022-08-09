@@ -26,41 +26,41 @@ int test_basic() {
   dbug("allocating...\n");
   b = new_sbuf_size("hello", 11);
   if (VERBOSE)
-    print_sbuf(b);
+    sbuf_print(b);
 
   dbug("appending...\n");
-  if (append_sbuf(" world!\n", &b)) {
+  if (sbuf_append_str(&b, " world!\n")) {
     printf("appending failed\n");
   }
   if (VERBOSE)
-    print_sbuf(b);
+    sbuf_print(b);
 
   dbug("is_full?...\n");
-  if(!is_full(b)) {
+  if(!sbuf_is_full(b)) {
     dbug("error, should be full\n");
     return 1;
   }
   dbug("is_full :)\n");
 
   dbug("reallocing...\n");
-  realloc_sbuf(&b, 12);
+  sbuf_realloc(&b, 12);
   dbug("shouldn't be full anymore...\n");
   if (VERBOSE)
-    print_sbuf(b);
-  if (is_full(b)) {
+    sbuf_print(b);
+  if (sbuf_is_full(b)) {
     dbug("failed to realloc\n");
   }
   dbug("isn't full :)\n");
 
   dbug("poking...\n");
-  if (set_sbuf_index(&b, 1, 'i')) {
+  if (sbuf_set_index(&b, 1, 'i')) {
     dbug("poking failed\n");
   }
   if (VERBOSE)
-    print_sbuf(b);
+    sbuf_print(b);
 
   dbug("getting...\n");
-  element = get_sbuf_index(b, 1);
+  element = sbuf_get_index(b, 1);
   if (element == '\0') {
     dbug("getting failed\n");
   }
@@ -68,23 +68,23 @@ int test_basic() {
     printf("b[1] : %c\n", element);
 
   dbug("clearing...\n");
-  if (clear_sbuf(&b)) {
+  if (sbuf_clear(&b)) {
     dbug("failed to clear\n");
   }
   if (VERBOSE)
-    print_sbuf(b);
+    sbuf_print(b);
 
   dbug("is_empty?...\n");
-  if(!is_empty(b)) {
+  if(!sbuf_is_empty(b)) {
     dbug("error, should be empty\n");
     return 1;
   }
   dbug("is_empty :)\n");
 
   dbug("freeing...\n");
-  free_sbuf(&b);
+  sbuf_free(&b);
   if (VERBOSE)
-    print_sbuf(b);
+    sbuf_print(b);
 
   dbug("\n**** BASIC PASS ****\n");
 
@@ -103,7 +103,7 @@ int test_allocation() {
   dbug("test 1 - new_sbuf_size:\n");
   a = new_sbuf_size("Test test test!", 32);
   if (VERBOSE)
-    print_sbuf(a);
+    sbuf_print(a);
   if (a.capacity != 32) {
     dbug("[ERROR] capacity\n");
     exit_code = 1;
@@ -121,7 +121,7 @@ int test_allocation() {
   dbug("test 2 - new_sbuf:\n");
   b = new_sbuf("minimum");
   if (VERBOSE)
-    print_sbuf(b);
+    sbuf_print(b);
   if (b.capacity != 7) {
     dbug("[ERROR] capacity\n");
     exit_code = 1;
@@ -145,12 +145,12 @@ int test_index_access() {
   dbug("\n\n**** INDEX TESTS ****\n");
   a = new_sbuf_size("", 1024);
   if (VERBOSE)
-    print_sbuf(a);
+    sbuf_print(a);
 
   dbug("testing basic index set\n");
-  set_sbuf_index(&a, 0, 'a');
+  sbuf_set_index(&a, 0, 'a');
   if (VERBOSE)
-    print_sbuf(a);
+    sbuf_print(a);
   if (a.len != 1) {
     dbug("[ERROR] len\n");
     return 1;
@@ -161,14 +161,14 @@ int test_index_access() {
   }
 
   dbug("setting a bit further in...\n");
-  set_sbuf_index(&a, 2, 'c');
+  sbuf_set_index(&a, 2, 'c');
   if (VERBOSE)
-    print_sbuf(a);
+    sbuf_print(a);
 
   dbug("filling in ...\n");
-  set_sbuf_index(&a, 1, 'b');
+  sbuf_set_index(&a, 1, 'b');
   if (VERBOSE)
-    print_sbuf(a);
+    sbuf_print(a);
   return 0;
 }
 
@@ -177,11 +177,11 @@ int test_append() {
   sbuf a;
   dbug("\n\n**** APPEND TESTS ****\n");
   a = new_sbuf_size("", 64);
-  while (!is_full(a)) {
-    append_char_sbuf('a', &a);
+  while (!sbuf_is_full(a)) {
+    sbuf_append_char(&a, 'a');
   }
   if (VERBOSE)
-    print_sbuf(a);
+    sbuf_print(a);
   return 0;
 }
 
