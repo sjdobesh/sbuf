@@ -24,6 +24,7 @@
  * @return a boolean, or a -1 on error and sets errno
  */
 int is_full(sbuf s) {
+  errno = 0;
   if (s.buf == NULL) {
     errno = EPERM;
     return -1;
@@ -38,6 +39,7 @@ int is_full(sbuf s) {
  * @return a boolean, or a -1 on error and sets errno
  */
 int is_empty(sbuf s) {
+  errno = 0;
   if (s.buf == NULL) {
     errno = EPERM;
     return -1;
@@ -77,6 +79,7 @@ void print_sbuf(sbuf s) {
 sbuf new_sbuf(char* string, size_t capacity) {
   sbuf s;
   int len;
+  errno = 0;
   s.buf = malloc(capacity + 1); /* add room for '\0' */
   if (s.buf == NULL) {
     errno = ENOMEM;
@@ -112,6 +115,7 @@ sbuf new_sbuf_small(char* string) {
  */
 int realloc_sbuf(sbuf* s, size_t new_capacity) {
   char* buf;
+  errno = 0;
   buf = realloc(s->buf, new_capacity + 1);
   if (buf == NULL) {
     errno = ENOMEM;
@@ -155,6 +159,7 @@ void free_sbuf(sbuf* s) {
  */
 int append_sbuf(char* string, sbuf* s) {
   int space, len;
+  errno = 0;
   if (s->buf == NULL) {
     errno = EPERM;
     return 1;
@@ -178,6 +183,7 @@ int append_sbuf(char* string, sbuf* s) {
  * @return an exit code, setting errno on failure
  */
 int clear_sbuf(sbuf* s){
+  errno = 0;
   if (s->buf == NULL) {
     errno = EPERM;
     return 1;
@@ -204,6 +210,7 @@ sbuf copy_sbuf(sbuf s) {
  * @return an exit code, setting errno on failure
  */
 int shrink_sbuf(sbuf* s) {
+  errno = 0;
   /* check if already at minimum size for contents */
   if (s->len == s->capacity) {
     errno = EPERM;
