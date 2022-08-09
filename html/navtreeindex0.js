@@ -13,7 +13,6 @@ var NAVTREEINDEX0 =
 "index.html#autotoc_md1":[0],
 "index.html#autotoc_md2":[0,0],
 "index.html#autotoc_md3":[0,1],
-"index.html#autotoc_md4":[0,2],
 "pages.html":[],
 "sbuf_8c.html":[2,0,0],
 "sbuf_8c.html#a0b25e35d9f723ab1c14d5672cc5af9ee":[2,0,0,6],

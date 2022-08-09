@@ -24,9 +24,8 @@ var NAVTREE =
 [
   [ "sbuf", "index.html", [
     [ "usage", "index.html#autotoc_md1", [
-      [ "compile", "index.html#autotoc_md2", null ],
-      [ "install", "index.html#autotoc_md3", null ],
-      [ "include", "index.html#autotoc_md4", null ]
+      [ "install", "index.html#autotoc_md2", null ],
+      [ "include", "index.html#autotoc_md3", null ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],

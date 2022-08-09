@@ -96,18 +96,10 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <h1><a class="anchor" id="autotoc_md1"></a>
 usage</h1>
 <h2><a class="anchor" id="autotoc_md2"></a>
-compile</h2>
-<div class="fragment"><div class="line"># generate a test executable in bin</div>
-<div class="line">make test</div>
-<div class="line"># or generate .a and .so libraries in lib</div>
-<div class="line">make lib</div>
-<div class="line"># or for both</div>
-<div class="line">make</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
 install</h2>
-<p>copy to your local lib and includes </p><div class="fragment"><div class="line">sudo cp ./lib/libsbuf.so /usr/lib</div>
-<div class="line">sudo cp ./src/sbuf.h /usr/include</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md4"></a>
+<div class="fragment"><div class="line">git clone https://sjdobesh.github/sbuf.git</div>
+<div class="line">./install</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md3"></a>
 include</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="sbuf_8h.html">sbuf.h</a>&gt;</span></div>
 </div><!-- fragment --><p>and remember to link when you compile </p><div class="fragment"><div class="line">gcc prog.c -Lsbuf</div>
