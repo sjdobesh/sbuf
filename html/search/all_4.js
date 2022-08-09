@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['doxyreadme_2emd_6',['doxyreadme.md',['../doxyreadme_8md.html',1,'']]]
+  ['len_4',['len',['../structsbuf.html#adc79a68252da5d02507e6a089e0dbd22',1,'sbuf']]]
 ];
