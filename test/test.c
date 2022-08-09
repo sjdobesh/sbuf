@@ -139,9 +139,49 @@ int test_allocation() {
   return exit_code;
 }
 
+/* test index access */
+int test_index_access() {
+  sbuf a;
+  dbug("\n\n**** INDEX TESTS ****\n");
+  a = new_sbuf_size("", 1024);
+  if (VERBOSE)
+    print_sbuf(a);
+
+  dbug("testing basic index set\n");
+  set_sbuf_index(&a, 0, 'a');
+  if (VERBOSE)
+    print_sbuf(a);
+  if (a.len != 1) {
+    dbug("[ERROR] len\n");
+    return 1;
+  }
+  if (a.buf[1] != '\0') {
+    dbug("[ERROR] terminator\n");
+    return 1;
+  }
+
+  dbug("setting a bit further in...\n");
+  set_sbuf_index(&a, 2, 'c');
+  if (VERBOSE)
+    print_sbuf(a);
+
+  dbug("filling in ...\n");
+  set_sbuf_index(&a, 1, 'b');
+  if (VERBOSE)
+    print_sbuf(a);
+  return 0;
+}
+
 /* test append */
 int test_append() {
+  sbuf a;
   dbug("\n\n**** APPEND TESTS ****\n");
+  a = new_sbuf_size("", 64);
+  while (!is_full(a)) {
+    append_char_sbuf('a', &a);
+  }
+  if (VERBOSE)
+    print_sbuf(a);
   return 0;
 }
 
@@ -164,5 +204,9 @@ int main() {
   */
   printf("Allocation:");
   printf("  - %s\n", (test_allocation() ? "FAIL": "PASS"));
+  printf("Index:");
+  printf("  - %s\n", (test_index_access() ? "FAIL": "PASS"));
+  printf("Append:");
+  printf("  - %s\n", (test_append() ? "FAIL": "PASS"));
   return 0;
 }
