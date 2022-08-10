@@ -2,7 +2,7 @@
 echo "compiling library..."
 make lib
 echo "copying shared library..."
-sudo cp lib/libsbuf.so /usr/lib
+sudo cp lib/libsbuf.so /usr/local/lib
 echo "copying header..."
 sudo cp src/sbuf.h /usr/include
 echo "cleaning..."
