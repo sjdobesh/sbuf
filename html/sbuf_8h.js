@@ -2,6 +2,7 @@ var sbuf_8h =
 [
     [ "sbuf", "structsbuf.html", "structsbuf" ],
     [ "sbuf", "sbuf_8h.html#a18ed3e3dde4d41bdfd0cb49afcd0f08f", null ],
+    [ "new_dsbuf", "sbuf_8h.html#a630ad6f1e57059532e0dc653cfc58fd1", null ],
     [ "new_sbuf", "sbuf_8h.html#ab1bdc2c56a19ec478e30e16abff990ce", null ],
     [ "new_sbuf_size", "sbuf_8h.html#a59d456bd5473278edfc1a6e2ca54f2f5", null ],
     [ "sbuf_append_char", "sbuf_8h.html#a97e40d2121ecddf068ac419612ac9cac", null ],

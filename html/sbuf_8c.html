@@ -140,6 +140,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ab1bdc2c56a19ec478e30e16abff990ce"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsbuf.html">sbuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sbuf_8c.html#ab1bdc2c56a19ec478e30e16abff990ce">new_sbuf</a> (char *string)</td></tr>
 <tr class="memdesc:ab1bdc2c56a19ec478e30e16abff990ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">allocates the smallest buffer possible.  <a href="sbuf_8c.html#ab1bdc2c56a19ec478e30e16abff990ce">More...</a><br /></td></tr>
 <tr class="separator:ab1bdc2c56a19ec478e30e16abff990ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a630ad6f1e57059532e0dc653cfc58fd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsbuf.html">sbuf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sbuf_8c.html#a630ad6f1e57059532e0dc653cfc58fd1">new_dsbuf</a> (char *string)</td></tr>
+<tr class="memdesc:a630ad6f1e57059532e0dc653cfc58fd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">allocates the smallest buffer possible but adds a dynamically expanding flag.  <a href="sbuf_8c.html#a630ad6f1e57059532e0dc653cfc58fd1">More...</a><br /></td></tr>
+<tr class="separator:a630ad6f1e57059532e0dc653cfc58fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac66378e0a538dbad0b8a4f9992c9755d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sbuf_8c.html#ac66378e0a538dbad0b8a4f9992c9755d">sbuf_realloc</a> (<a class="el" href="structsbuf.html">sbuf</a> *s, size_t new_capacity)</td></tr>
 <tr class="memdesc:ac66378e0a538dbad0b8a4f9992c9755d"><td class="mdescLeft">&#160;</td><td class="mdescRight">reallocates an existing buffer, possibly truncating its contents.  <a href="sbuf_8c.html#ac66378e0a538dbad0b8a4f9992c9755d">More...</a><br /></td></tr>
 <tr class="separator:ac66378e0a538dbad0b8a4f9992c9755d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,6 +197,46 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a630ad6f1e57059532e0dc653cfc58fd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a630ad6f1e57059532e0dc653cfc58fd1">&#9670;&nbsp;</a></span>new_dsbuf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structsbuf.html">sbuf</a> new_dsbuf </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>string</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>allocates the smallest buffer possible but adds a dynamically expanding flag. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>the data to store in the buffer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a newly allocated sbuf struct, empty on failure. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00114">114</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00021">sbuf::dynamic</a>, and <a class="el" href="sbuf_8c_source.html#l00079">new_sbuf_size()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="sbuf_8c_a630ad6f1e57059532e0dc653cfc58fd1_cgraph.png" border="0" usemap="#sbuf_8c_a630ad6f1e57059532e0dc653cfc58fd1_cgraph" alt=""/></div>
+<map name="sbuf_8c_a630ad6f1e57059532e0dc653cfc58fd1_cgraph" id="sbuf_8c_a630ad6f1e57059532e0dc653cfc58fd1_cgraph">
+<area shape="rect" title="allocates the smallest buffer possible but adds a dynamically expanding flag." alt="" coords="5,5,97,32"/>
+<area shape="rect" href="sbuf_8c.html#a59d456bd5473278edfc1a6e2ca54f2f5" title="allocates a new buffer of a specific size." alt="" coords="145,5,263,32"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="ab1bdc2c56a19ec478e30e16abff990ce"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab1bdc2c56a19ec478e30e16abff990ce">&#9670;&nbsp;</a></span>new_sbuf()</h2>
 
@@ -274,7 +317,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00079">79</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00021">sbuf::len</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
 </div>
 </div>
@@ -305,6 +348,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>append a single char to the end of a buffer. </p>
+<p>may expand a sbuf marked dynamic.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">c</td><td>the char to append </td></tr>
@@ -314,16 +358,17 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00184">184</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00206">206</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00021">sbuf::len</a>, and <a class="el" href="sbuf_8c_source.html#l00026">sbuf_is_full()</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00021">sbuf::dynamic</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>, <a class="el" href="sbuf_8c_source.html#l00026">sbuf_is_full()</a>, and <a class="el" href="sbuf_8c_source.html#l00127">sbuf_realloc()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="sbuf_8c_a97e40d2121ecddf068ac419612ac9cac_cgraph.png" border="0" usemap="#sbuf_8c_a97e40d2121ecddf068ac419612ac9cac_cgraph" alt=""/></div>
 <map name="sbuf_8c_a97e40d2121ecddf068ac419612ac9cac_cgraph" id="sbuf_8c_a97e40d2121ecddf068ac419612ac9cac_cgraph">
-<area shape="rect" title="append a single char to the end of a buffer." alt="" coords="5,5,145,32"/>
-<area shape="rect" href="sbuf_8c.html#a5ebae62a20a7f758a99afd3410a1079f" title="checks if a buffer is full." alt="" coords="193,5,289,32"/>
+<area shape="rect" title="append a single char to the end of a buffer." alt="" coords="5,31,145,57"/>
+<area shape="rect" href="sbuf_8c.html#a5ebae62a20a7f758a99afd3410a1079f" title="checks if a buffer is full." alt="" coords="196,5,292,32"/>
+<area shape="rect" href="sbuf_8c.html#ac66378e0a538dbad0b8a4f9992c9755d" title="reallocates an existing buffer, possibly truncating its contents." alt="" coords="193,56,295,83"/>
 </map>
 </div>
 
@@ -365,16 +410,16 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00158">158</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00172">172</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00021">sbuf::len</a>, and <a class="el" href="sbuf_8c_source.html#l00026">sbuf_is_full()</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00021">sbuf::dynamic</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>, and <a class="el" href="sbuf_8c_source.html#l00127">sbuf_realloc()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="sbuf_8c_a2bfc168d116b6d08784cf0dcffd0c9f5_cgraph.png" border="0" usemap="#sbuf_8c_a2bfc168d116b6d08784cf0dcffd0c9f5_cgraph" alt=""/></div>
 <map name="sbuf_8c_a2bfc168d116b6d08784cf0dcffd0c9f5_cgraph" id="sbuf_8c_a2bfc168d116b6d08784cf0dcffd0c9f5_cgraph">
 <area shape="rect" title="appends a string to a sbuf." alt="" coords="5,5,135,32"/>
-<area shape="rect" href="sbuf_8c.html#a5ebae62a20a7f758a99afd3410a1079f" title="checks if a buffer is full." alt="" coords="183,5,279,32"/>
+<area shape="rect" href="sbuf_8c.html#ac66378e0a538dbad0b8a4f9992c9755d" title="reallocates an existing buffer, possibly truncating its contents." alt="" coords="183,5,284,32"/>
 </map>
 </div>
 
@@ -405,9 +450,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00205">205</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00231">231</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00021">sbuf::len</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
 </div>
 </div>
@@ -436,9 +481,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a newly malloc'd sbuf </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00222">222</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00248">248</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::capacity</a>, and <a class="el" href="sbuf_8c_source.html#l00079">new_sbuf_size()</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8c_source.html#l00079">new_sbuf_size()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -468,7 +513,7 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>frees a sbuf's internal pointer. </p>
-<p>updates <code>.capacity</code> and <code>len</code> and will not double free.</p>
+<p>updates <code>.capacity</code> and <code>.len</code> and will not double free.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">s</td><td>the sbuf to free </td></tr>
@@ -477,9 +522,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00139">139</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00152">152</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00021">sbuf::len</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00021">sbuf::dynamic</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
 </div>
 </div>
@@ -519,9 +564,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the char in s at index i. returns '\0' and sets errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00279">279</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00305">305</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::capacity</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, and <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>.</p>
 
 </div>
 </div>
@@ -550,9 +595,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the char ptr to the sbuf's buffer (not a copy) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00251">251</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00277">277</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>.</p>
 
 </div>
 </div>
@@ -583,7 +628,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00041">41</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>, and <a class="el" href="sbuf_8h_source.html#l00021">sbuf::len</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
 </div>
 </div>
@@ -614,7 +659,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00026">26</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00021">sbuf::len</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
 </div>
 </div>
@@ -645,7 +690,7 @@ Here is the call graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00056">56</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00021">sbuf::len</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
 </div>
 </div>
@@ -685,9 +730,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00114">114</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00127">127</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00021">sbuf::len</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
 </div>
 </div>
@@ -734,9 +779,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00295">295</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00321">321</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00021">sbuf::len</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
 </div>
 </div>
@@ -776,9 +821,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00262">262</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00288">288</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00021">sbuf::len</a>, and <a class="el" href="sbuf_8c_source.html#l00205">sbuf_clear()</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>, and <a class="el" href="sbuf_8c_source.html#l00231">sbuf_clear()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -816,9 +861,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00232">232</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00258">258</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00019">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00021">sbuf::len</a>, and <a class="el" href="sbuf_8c_source.html#l00114">sbuf_realloc()</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>, and <a class="el" href="sbuf_8c_source.html#l00127">sbuf_realloc()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

@@ -103,15 +103,18 @@ $(document).ready(function(){initNavTree('structsbuf.html',''); initResizable();
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a1acdda4d02d45a8caac3b29393bec478"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsbuf.html#a1acdda4d02d45a8caac3b29393bec478">buf</a></td></tr>
-<tr class="memdesc:a1acdda4d02d45a8caac3b29393bec478"><td class="mdescLeft">&#160;</td><td class="mdescRight">the actual char buffer.  <a href="structsbuf.html#a1acdda4d02d45a8caac3b29393bec478">More...</a><br /></td></tr>
-<tr class="separator:a1acdda4d02d45a8caac3b29393bec478"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab76e77c25188e04830319d8479866b42"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsbuf.html#ab76e77c25188e04830319d8479866b42">capacity</a></td></tr>
 <tr class="memdesc:ab76e77c25188e04830319d8479866b42"><td class="mdescLeft">&#160;</td><td class="mdescRight">malloc size of buffer.  <a href="structsbuf.html#ab76e77c25188e04830319d8479866b42">More...</a><br /></td></tr>
 <tr class="separator:ab76e77c25188e04830319d8479866b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc79a68252da5d02507e6a089e0dbd22"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsbuf.html#adc79a68252da5d02507e6a089e0dbd22">len</a></td></tr>
 <tr class="memdesc:adc79a68252da5d02507e6a089e0dbd22"><td class="mdescLeft">&#160;</td><td class="mdescRight">length of contents.  <a href="structsbuf.html#adc79a68252da5d02507e6a089e0dbd22">More...</a><br /></td></tr>
 <tr class="separator:adc79a68252da5d02507e6a089e0dbd22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a506ce9a7b5124875167d694fa8f16b58"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsbuf.html#a506ce9a7b5124875167d694fa8f16b58">dynamic</a>: 1</td></tr>
+<tr class="memdesc:a506ce9a7b5124875167d694fa8f16b58"><td class="mdescLeft">&#160;</td><td class="mdescRight">dynamic flag for if sbuf should auto expand  <a href="structsbuf.html#a506ce9a7b5124875167d694fa8f16b58">More...</a><br /></td></tr>
+<tr class="separator:a506ce9a7b5124875167d694fa8f16b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1acdda4d02d45a8caac3b29393bec478"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsbuf.html#a1acdda4d02d45a8caac3b29393bec478">buf</a></td></tr>
+<tr class="memdesc:a1acdda4d02d45a8caac3b29393bec478"><td class="mdescLeft">&#160;</td><td class="mdescRight">the actual char buffer.  <a href="structsbuf.html#a1acdda4d02d45a8caac3b29393bec478">More...</a><br /></td></tr>
+<tr class="separator:a1acdda4d02d45a8caac3b29393bec478"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>a malloc'd string buffer. </p>
@@ -133,7 +136,7 @@ Public Attributes</h2></td></tr>
 
 <p>the actual char buffer. </p>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8h_source.html#l00017">17</a> of file <a class="el" href="sbuf_8h_source.html">sbuf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8h_source.html#l00023">23</a> of file <a class="el" href="sbuf_8h_source.html">sbuf.h</a>.</p>
 
 </div>
 </div>
@@ -151,7 +154,25 @@ Public Attributes</h2></td></tr>
 
 <p>malloc size of buffer. </p>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8h_source.html#l00019">19</a> of file <a class="el" href="sbuf_8h_source.html">sbuf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8h_source.html#l00017">17</a> of file <a class="el" href="sbuf_8h_source.html">sbuf.h</a>.</p>
+
+</div>
+</div>
+<a id="a506ce9a7b5124875167d694fa8f16b58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a506ce9a7b5124875167d694fa8f16b58">&#9670;&nbsp;</a></span>dynamic</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int sbuf::dynamic</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>dynamic flag for if sbuf should auto expand </p>
+
+<p class="definition">Definition at line <a class="el" href="sbuf_8h_source.html#l00021">21</a> of file <a class="el" href="sbuf_8h_source.html">sbuf.h</a>.</p>
 
 </div>
 </div>
@@ -169,7 +190,7 @@ Public Attributes</h2></td></tr>
 
 <p>length of contents. </p>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8h_source.html#l00021">21</a> of file <a class="el" href="sbuf_8h_source.html">sbuf.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8h_source.html#l00019">19</a> of file <a class="el" href="sbuf_8h_source.html">sbuf.h</a>.</p>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['len_47',['len',['../structsbuf.html#adc79a68252da5d02507e6a089e0dbd22',1,'sbuf']]]
+  ['dynamic_50',['dynamic',['../structsbuf.html#a506ce9a7b5124875167d694fa8f16b58',1,'sbuf']]]
 ];
