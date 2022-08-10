@@ -185,6 +185,18 @@ int test_append() {
   return 0;
 }
 
+/* test dynamic sbuf */
+int test_dsbuf() {
+  sbuf a;
+  dbug("\n\n**** DYNAMIC TESTS ****\n");
+  a= new_dsbuf("dynamic baby");
+  sbuf_print(a);
+  sbuf_append_str(&a, " B)\n");
+  sbuf_print(a);
+
+  return 0;
+}
+
 /* test copy */
 int test_copy() {
   dbug("\n\n**** COPY TESTS ****\n");
@@ -208,5 +220,7 @@ int main() {
   printf("  - %s\n", (test_index_access() ? "FAIL": "PASS"));
   printf("Append:");
   printf("  - %s\n", (test_append() ? "FAIL": "PASS"));
+  printf("Dynamic:");
+  printf("  - %s\n", (test_dsbuf() ? "FAIL": "PASS"));
   return 0;
 }

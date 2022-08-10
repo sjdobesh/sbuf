@@ -13,12 +13,14 @@
  * a malloc'd string buffer. tracks capacity and length of a dynamic ptr.
  **/
 typedef struct sbuf {
-  /** the actual char buffer. */
-  char* buf;
   /** malloc size of buffer. */
   size_t capacity;
   /** length of contents. */
   size_t len;
+  /** dynamic flag for if sbuf should auto expand */
+  unsigned int dynamic : 1;
+  /** the actual char buffer. */
+  char* buf;
 } sbuf;
 
 /* UTIL *---------------------------------------------------------------------*/
@@ -32,10 +34,12 @@ void sbuf_print(sbuf s);
 
 /* ALLOCATION *---------------------------------------------------------------*/
 
-/* allocate a buffer of the minimum required space for the string */
-sbuf new_sbuf(char* string);
 /* allocate a new buffer with a user defined caacity*/
 sbuf new_sbuf_size(char* string, size_t capacity);
+/* allocate a buffer of the minimum required space for the string */
+sbuf new_sbuf(char* string);
+/* allocate a dynamic buffer of the minimum required space for the string */
+sbuf new_dsbuf(char* string);
 /* reallocate an existing buffer, possibly truncating its contents */
 int sbuf_realloc(sbuf* b, size_t new_capacity);
 /* free a buffers internal pointer */

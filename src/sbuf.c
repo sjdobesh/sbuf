@@ -105,6 +105,19 @@ sbuf new_sbuf(char* string) {
 }
 
 /**
+ * allocates the smallest buffer possible but
+ * adds a dynamically expanding flag.
+ *
+ * @param string the data to store in the buffer
+ * @return a newly allocated sbuf struct, empty on failure.
+ */
+sbuf new_dsbuf(char* string) {
+  sbuf s = new_sbuf_size(string, strlen(string));
+  s.dynamic = 1;
+  return s;
+}
+
+/**
  * reallocates an existing buffer, possibly truncating its contents.
  *
  * @param s the sbuf to reallocate
@@ -130,7 +143,7 @@ int sbuf_realloc(sbuf* s, size_t new_capacity) {
 
 /**
  * frees a sbuf's internal pointer.
- * updates `.capacity` and `len`
+ * updates `.capacity` and `.len`
  * and will not double free.
  *
  * @param s the sbuf to free
@@ -140,9 +153,10 @@ void sbuf_free(sbuf* s) {
   if (s->buf != NULL) {
     free(s->buf);
     s->buf = NULL;
+    s->capacity = 0;
+    s->len = 0;
+    s->dynamic = 0;
   }
-  s->capacity = 0;
-  s->len = 0;
 }
 
 
@@ -162,13 +176,20 @@ int sbuf_append_str(sbuf* s, char* string) {
     errno = EPERM;
     return 1;
   }
-  if (sbuf_is_full(*s)) {
-    errno = ENOMEM;
-    return 1;
-  }
-  /* check length requirements and copy maximum allowed */
+  /* check length requirements. if dynamic check beyond limit */
   space = s->capacity - s->len;
-  len = strnlen(string, space);
+  len = s->dynamic
+    ? strlen(string)
+    : strnlen(string, space);
+  if (len > space) {
+    /* if we are out of space, check if we can resize */
+    if (s->dynamic) {
+      sbuf_realloc(s, s->len + len - space);
+    } else {
+      errno = ENOMEM;
+      return 1;
+    }
+  }
   strncat(s->buf, string, len);
   s->len += len;
   return 0;
@@ -176,6 +197,7 @@ int sbuf_append_str(sbuf* s, char* string) {
 
 /**
  * append a single char to the end of a buffer.
+ * may expand a sbuf marked dynamic.
  *
  * @param c the char to append
  * @param s the sbuf to append to
@@ -188,8 +210,12 @@ int sbuf_append_char(sbuf* s, char c) {
     return 1;
   }
   if (sbuf_is_full(*s)) {
-    errno = ENOMEM;
-    return 1;
+    if (! s->dynamic) {
+      errno = ENOMEM;
+      return 1;
+    } else {
+      sbuf_realloc(s, s->len + 1);
+    }
   }
   s->buf[s->len] = c;
   s->len++;
