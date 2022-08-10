@@ -165,8 +165,8 @@ void sbuf_free(sbuf* s) {
 /**
  * appends a string to a sbuf.
  *
- * @param string the content to append
  * @param s the sbuf to append to
+ * @param string the content to append
  * @return an exit code, setting errno on failure
  */
 int sbuf_append_str(sbuf* s, char* string) {
@@ -199,8 +199,8 @@ int sbuf_append_str(sbuf* s, char* string) {
  * append a single char to the end of a buffer.
  * may expand a sbuf marked dynamic.
  *
- * @param c the char to append
  * @param s the sbuf to append to
+ * @param c the char to append
  * @return an exit code, setting errno on failure
  */
 int sbuf_append_char(sbuf* s, char c) {
