@@ -80,14 +80,13 @@ sbuf new_sbuf_size(char* string, size_t capacity) {
   sbuf s;
   int len;
   errno = 0;
-  s.buf = malloc(capacity + 1); /* add room for '\0' */
+  s.buf = calloc(capacity + 1, 1); /* add room for '\0' */
   if (s.buf == NULL) {
     errno = ENOMEM;
   } else {
     s.capacity = capacity;
     len = strnlen(string, capacity);
     strncpy(s.buf, string, len);
-    s.buf[capacity] = '\0';
     s.len = len;
   }
   return s;
@@ -142,9 +141,9 @@ int sbuf_realloc(sbuf* s, size_t new_capacity) {
 }
 
 /**
- * frees a sbuf's internal pointer.
- * updates `.capacity` and `.len`
- * and will not double free.
+ * frees a sbuf's internal pointer if it needs to be freed and sets it to `NULL`.
+ * zeros out `.capacity`, `.len`, and unsets `.dyanmic`.
+ * will not double free.
  *
  * @param s the sbuf to free
  * @return void
@@ -153,10 +152,11 @@ void sbuf_free(sbuf* s) {
   if (s->buf != NULL) {
     free(s->buf);
     s->buf = NULL;
-    s->capacity = 0;
-    s->len = 0;
-    s->dynamic = 0;
   }
+  /* zero out a sbuf that was being allocated but failed */
+  s->capacity = 0;
+  s->len = 0;
+  s->dynamic = 0;
 }
 
 
