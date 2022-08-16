@@ -21,9 +21,13 @@ build/*
 .clangd/
 .clangd/*
 
-# binaries
+# build files
 bin/
 bin/*
+obj/
+obj/*
+lib/
+lib/*
 
 # documentation
 dox/
