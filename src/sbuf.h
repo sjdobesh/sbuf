@@ -40,11 +40,11 @@ int sbuf_search_str_all(sbuf s, char* search, int** rv, int* rc);
 /* ALLOCATION *---------------------------------------------------------------*/
 
 /* allocate a new buffer with a user defined caacity*/
-sbuf new_sbuf_size(char* string, size_t capacity);
+sbuf sbuf_alloc_size(char* string, size_t capacity);
 /* allocate a buffer of the minimum required space for the string */
-sbuf new_sbuf(char* string);
+sbuf sbuf_alloc(char* string);
 /* allocate a dynamic buffer of the minimum required space for the string */
-sbuf new_dsbuf(char* string);
+sbuf sbuf_alloc_dynamic(char* string);
 /* reallocate an existing buffer, possibly truncating its contents */
 int sbuf_realloc(sbuf* b, size_t new_capacity);
 /* free a buffers internal pointer */

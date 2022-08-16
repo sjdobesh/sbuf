@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "sbuf.h"
+#include "../src/sbuf.h"
 
 #define VERBOSE 1
 
@@ -24,7 +24,7 @@ int test_basic() {
 
   dbug("\n\n**** BASIC TESTS ****\n");
   dbug("allocating...\n");
-  b = new_sbuf_size("hello", 11);
+  b = sbuf_alloc_size("hello", 11);
   if (VERBOSE)
     sbuf_print(b);
 
@@ -100,8 +100,8 @@ int test_allocation() {
   dbug("\n\n**** ALLOCATION TESTS ****\n");
 
   /* check that a standard allocation works as expected */
-  dbug("test 1 - new_sbuf_size:\n");
-  a = new_sbuf_size("Test test test!", 32);
+  dbug("test 1 - sbuf_alloc_size:\n");
+  a = sbuf_alloc_size("Test test test!", 32);
   if (VERBOSE)
     sbuf_print(a);
   if (a.capacity != 32) {
@@ -117,9 +117,9 @@ int test_allocation() {
     dbug("test 1 pass\n");
   }
 
-  /* check the new_sbuf method */
-  dbug("test 2 - new_sbuf:\n");
-  b = new_sbuf("minimum");
+  /* check the sbuf_alloc method */
+  dbug("test 2 - sbuf_alloc:\n");
+  b = sbuf_alloc("minimum");
   if (VERBOSE)
     sbuf_print(b);
   if (b.capacity != 7) {
@@ -143,7 +143,7 @@ int test_allocation() {
 int test_index_access() {
   sbuf a;
   dbug("\n\n**** INDEX TESTS ****\n");
-  a = new_sbuf_size("", 1024);
+  a = sbuf_alloc_size("", 1024);
   if (VERBOSE)
     sbuf_print(a);
 
@@ -176,7 +176,7 @@ int test_index_access() {
 int test_append() {
   sbuf a;
   dbug("\n\n**** APPEND TESTS ****\n");
-  a = new_sbuf_size("", 64);
+  a = sbuf_alloc_size("", 64);
   while (!sbuf_is_full(a)) {
     sbuf_append_char(&a, 'a');
   }
@@ -189,7 +189,7 @@ int test_append() {
 int test_dsbuf() {
   sbuf a;
   dbug("\n\n**** DYNAMIC TESTS ****\n");
-  a= new_dsbuf("dynamic baby");
+  a= sbuf_alloc_dynamic("dynamic baby");
   sbuf_print(a);
   sbuf_append_str(&a, " B)\n");
   sbuf_print(a);

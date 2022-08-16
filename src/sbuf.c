@@ -7,6 +7,7 @@
 /**
  * define which strncpy to use
  **/
+#include <asm-generic/errno-base.h>
 #define _POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <string.h>
@@ -182,7 +183,7 @@ void sbuf_print(sbuf s) {
  * @param capacity the max length of string the buffer can store
  * @return a newly allocated sbuf struct, empty on failure.
  */
-sbuf new_sbuf_size(char* string, size_t capacity) {
+sbuf sbuf_alloc_size(char* string, size_t capacity) {
   sbuf s;
   int len;
   errno = 0;
@@ -205,8 +206,8 @@ sbuf new_sbuf_size(char* string, size_t capacity) {
  * @param string the data to store in the buffer
  * @return a newly allocated sbuf struct, empty on failure.
  */
-sbuf new_sbuf(char* string) {
-  return new_sbuf_size(string, strlen(string));
+sbuf sbuf_alloc(char* string) {
+  return sbuf_alloc_size(string, strlen(string));
 }
 
 /**
@@ -216,8 +217,8 @@ sbuf new_sbuf(char* string) {
  * @param string the data to store in the buffer
  * @return a newly allocated sbuf struct, empty on failure.
  */
-sbuf new_dsbuf(char* string) {
-  sbuf s = new_sbuf_size(string, strlen(string));
+sbuf sbuf_alloc_dynamic(char* string) {
+  sbuf s = sbuf_alloc_size(string, strlen(string));
   s.dynamic = 1;
   return s;
 }
@@ -232,6 +233,10 @@ sbuf new_dsbuf(char* string) {
 int sbuf_realloc(sbuf* s, size_t new_capacity) {
   char* buf;
   errno = 0;
+  if (!s) {
+    errno = EPERM;
+    return 1;
+  }
   buf = realloc(s->buf, new_capacity + 1);
   if (!buf) {
     errno = ENOMEM;
@@ -255,7 +260,7 @@ int sbuf_realloc(sbuf* s, size_t new_capacity) {
  * @return void
  */
 void sbuf_free(sbuf* s) {
-  if (s->buf != NULL) {
+  if (s && s->buf) {
     free(s->buf);
     s->buf = NULL;
   }
@@ -278,7 +283,7 @@ void sbuf_free(sbuf* s) {
 int sbuf_append_str(sbuf* s, char* string) {
   int space, len;
   errno = 0;
-  if (!s->buf) {
+  if (!s || !s->buf) {
     errno = EPERM;
     return 1;
   }
@@ -311,7 +316,7 @@ int sbuf_append_str(sbuf* s, char* string) {
  */
 int sbuf_append_char(sbuf* s, char c) {
   errno = 0;
-  if (!s->buf) {
+  if (!s || !s->buf) {
     errno = EPERM;
     return 1;
   }
@@ -336,7 +341,7 @@ int sbuf_append_char(sbuf* s, char c) {
  */
 int sbuf_clear(sbuf* s){
   errno = 0;
-  if (!s->buf) {
+  if (!s || !s->buf) {
     errno = EPERM;
     return 1;
   }
@@ -352,7 +357,7 @@ int sbuf_clear(sbuf* s){
  * @return a newly malloc'd sbuf
  */
 sbuf sbuf_copy(sbuf s) {
-  return new_sbuf_size(s.buf, s.capacity);
+  return sbuf_alloc_size(s.buf, s.capacity);
 }
 
 /**
@@ -364,7 +369,7 @@ sbuf sbuf_copy(sbuf s) {
 int sbuf_shrink(sbuf* s) {
   errno = 0;
   /* check if already at minimum size for contents */
-  if (s->len == s->capacity) {
+  if (!s || s->len == s->capacity) {
     errno = EPERM;
     return 1;
   }
@@ -392,8 +397,9 @@ char* sbuf_get_str(sbuf s) {
  * @return an exit code, setting errno on failure
  */
 int sbuf_set_str(sbuf* s, char* string) {
-  /* clear handles error checking */
-  if (sbuf_clear(s)) {
+  errno = 0;
+  if (!s || sbuf_clear(s)) {
+    errno = EPERM;
     return 1;
   }
   s->len = strnlen(string, s->capacity);
@@ -425,7 +431,9 @@ char sbuf_get_index(sbuf s, size_t i) {
  * @return an exit code, setting errno on failure
  **/
 int sbuf_set_index(sbuf* s, size_t i, char c) {
-  if (!s->buf || i >= s->capacity) {
+  errno = 0;
+  if (!s || !s->buf || i >= s->capacity) {
+    errno = EPERM;
     return 1;
   } else {
     s->buf[i] = c;
