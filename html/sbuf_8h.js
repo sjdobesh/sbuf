@@ -16,6 +16,10 @@ var sbuf_8h =
     [ "sbuf_is_full", "sbuf_8h.html#a5ebae62a20a7f758a99afd3410a1079f", null ],
     [ "sbuf_print", "sbuf_8h.html#a2599a1c74f8fce0c8d7c0b5efb773718", null ],
     [ "sbuf_realloc", "sbuf_8h.html#a292904312d526fb51c1a52deb3fef739", null ],
+    [ "sbuf_search_char", "sbuf_8h.html#a6ad0f7b5082f222137f040bcc0583251", null ],
+    [ "sbuf_search_char_all", "sbuf_8h.html#a651e48640942f6eb078956d85763875a", null ],
+    [ "sbuf_search_str", "sbuf_8h.html#a4b8597f378f1c93cf26d87d13afe897c", null ],
+    [ "sbuf_search_str_all", "sbuf_8h.html#ad742f3da6073046c4c23fd7b9a844bd0", null ],
     [ "sbuf_set_index", "sbuf_8h.html#a918c7f727fd59b69e05b53094f25508e", null ],
     [ "sbuf_set_str", "sbuf_8h.html#a358f86f4d2532628e4107db845a202e7", null ],
     [ "sbuf_shrink", "sbuf_8h.html#a23398478b0ebeb6317c88659e5ffdb6d", null ]

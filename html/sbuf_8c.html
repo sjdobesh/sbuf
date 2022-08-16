@@ -131,6 +131,18 @@ Functions</h2></td></tr>
 <tr class="memitem:ab2356776af64828b6abfe86180e0cdba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sbuf_8c.html#ab2356776af64828b6abfe86180e0cdba">sbuf_is_empty</a> (<a class="el" href="structsbuf.html">sbuf</a> s)</td></tr>
 <tr class="memdesc:ab2356776af64828b6abfe86180e0cdba"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a buffer is empty.  <a href="sbuf_8c.html#ab2356776af64828b6abfe86180e0cdba">More...</a><br /></td></tr>
 <tr class="separator:ab2356776af64828b6abfe86180e0cdba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ad0f7b5082f222137f040bcc0583251"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sbuf_8c.html#a6ad0f7b5082f222137f040bcc0583251">sbuf_search_char</a> (<a class="el" href="structsbuf.html">sbuf</a> s, char c)</td></tr>
+<tr class="memdesc:a6ad0f7b5082f222137f040bcc0583251"><td class="mdescLeft">&#160;</td><td class="mdescRight">search for a char  <a href="sbuf_8c.html#a6ad0f7b5082f222137f040bcc0583251">More...</a><br /></td></tr>
+<tr class="separator:a6ad0f7b5082f222137f040bcc0583251"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a651e48640942f6eb078956d85763875a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sbuf_8c.html#a651e48640942f6eb078956d85763875a">sbuf_search_char_all</a> (<a class="el" href="structsbuf.html">sbuf</a> s, char c, int **rv, int *rc)</td></tr>
+<tr class="memdesc:a651e48640942f6eb078956d85763875a"><td class="mdescLeft">&#160;</td><td class="mdescRight">search for all instances of char  <a href="sbuf_8c.html#a651e48640942f6eb078956d85763875a">More...</a><br /></td></tr>
+<tr class="separator:a651e48640942f6eb078956d85763875a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b8597f378f1c93cf26d87d13afe897c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sbuf_8c.html#a4b8597f378f1c93cf26d87d13afe897c">sbuf_search_str</a> (<a class="el" href="structsbuf.html">sbuf</a> s, char *search)</td></tr>
+<tr class="memdesc:a4b8597f378f1c93cf26d87d13afe897c"><td class="mdescLeft">&#160;</td><td class="mdescRight">search for a substring  <a href="sbuf_8c.html#a4b8597f378f1c93cf26d87d13afe897c">More...</a><br /></td></tr>
+<tr class="separator:a4b8597f378f1c93cf26d87d13afe897c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad742f3da6073046c4c23fd7b9a844bd0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sbuf_8c.html#ad742f3da6073046c4c23fd7b9a844bd0">sbuf_search_str_all</a> (<a class="el" href="structsbuf.html">sbuf</a> s, char *search, int **rv, int *rc)</td></tr>
+<tr class="memdesc:ad742f3da6073046c4c23fd7b9a844bd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">search for all occurances of a substring  <a href="sbuf_8c.html#ad742f3da6073046c4c23fd7b9a844bd0">More...</a><br /></td></tr>
+<tr class="separator:ad742f3da6073046c4c23fd7b9a844bd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2599a1c74f8fce0c8d7c0b5efb773718"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sbuf_8c.html#a2599a1c74f8fce0c8d7c0b5efb773718">sbuf_print</a> (<a class="el" href="structsbuf.html">sbuf</a> s)</td></tr>
 <tr class="memdesc:a2599a1c74f8fce0c8d7c0b5efb773718"><td class="mdescLeft">&#160;</td><td class="mdescRight">prints the buffer members.  <a href="sbuf_8c.html#a2599a1c74f8fce0c8d7c0b5efb773718">More...</a><br /></td></tr>
 <tr class="separator:a2599a1c74f8fce0c8d7c0b5efb773718"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,9 +234,9 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a newly allocated sbuf struct, empty on failure. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00113">113</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00219">219</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00021">sbuf::dynamic</a>, and <a class="el" href="sbuf_8c_source.html#l00079">new_sbuf_size()</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00021">sbuf::dynamic</a>, and <a class="el" href="sbuf_8c_source.html#l00185">new_sbuf_size()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -263,9 +275,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a newly allocated sbuf struct, empty on failure. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00102">102</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00208">208</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8c_source.html#l00079">new_sbuf_size()</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8c_source.html#l00185">new_sbuf_size()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -315,7 +327,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a newly allocated sbuf struct, empty on failure. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00079">79</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00185">185</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
 <p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
@@ -358,9 +370,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00206">206</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00312">312</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00021">sbuf::dynamic</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>, <a class="el" href="sbuf_8c_source.html#l00026">sbuf_is_full()</a>, and <a class="el" href="sbuf_8c_source.html#l00126">sbuf_realloc()</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00021">sbuf::dynamic</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>, <a class="el" href="sbuf_8c_source.html#l00026">sbuf_is_full()</a>, and <a class="el" href="sbuf_8c_source.html#l00232">sbuf_realloc()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -410,9 +422,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00172">172</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00278">278</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00021">sbuf::dynamic</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>, and <a class="el" href="sbuf_8c_source.html#l00126">sbuf_realloc()</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00021">sbuf::dynamic</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>, and <a class="el" href="sbuf_8c_source.html#l00232">sbuf_realloc()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -450,7 +462,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00231">231</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00337">337</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
 <p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
@@ -481,9 +493,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a newly malloc'd sbuf </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00248">248</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00354">354</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8c_source.html#l00079">new_sbuf_size()</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8c_source.html#l00185">new_sbuf_size()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -522,7 +534,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00151">151</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00257">257</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
 <p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00021">sbuf::dynamic</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
@@ -564,7 +576,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the char in s at index i. returns '\0' and sets errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00305">305</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00411">411</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
 <p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, and <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>.</p>
 
@@ -595,7 +607,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the char ptr to the sbuf's buffer (not a copy) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00277">277</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00383">383</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
 <p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>.</p>
 
@@ -688,7 +700,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00056">56</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00162">162</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
 <p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
@@ -730,9 +742,205 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00126">126</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00232">232</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
 <p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
+
+</div>
+</div>
+<a id="a6ad0f7b5082f222137f040bcc0583251"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ad0f7b5082f222137f040bcc0583251">&#9670;&nbsp;</a></span>sbuf_search_char()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sbuf_search_char </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsbuf.html">sbuf</a>&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>search for a char </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the sbuf to search </td></tr>
+    <tr><td class="paramname">c</td><td>the char to search for </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>index where char was found. -1 if error. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00057">57</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
+
+</div>
+</div>
+<a id="a651e48640942f6eb078956d85763875a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a651e48640942f6eb078956d85763875a">&#9670;&nbsp;</a></span>sbuf_search_char_all()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sbuf_search_char_all </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsbuf.html">sbuf</a>&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>c</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>rv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>rc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>search for all instances of char </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the sbuf to search </td></tr>
+    <tr><td class="paramname">c</td><td>the char to search for </td></tr>
+    <tr><td class="paramname">rv</td><td>return vector of indices </td></tr>
+    <tr><td class="paramname">rc</td><td>return vector count </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an exit code, 0: found results, 1: no results, 2: memory error </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00078">78</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
+
+</div>
+</div>
+<a id="a4b8597f378f1c93cf26d87d13afe897c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b8597f378f1c93cf26d87d13afe897c">&#9670;&nbsp;</a></span>sbuf_search_str()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sbuf_search_str </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsbuf.html">sbuf</a>&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>search</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>search for a substring </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the sbuf to search </td></tr>
+    <tr><td class="paramname">search</td><td>the substring to search for </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>index where substring is located </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00108">108</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>.</p>
+
+</div>
+</div>
+<a id="ad742f3da6073046c4c23fd7b9a844bd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad742f3da6073046c4c23fd7b9a844bd0">&#9670;&nbsp;</a></span>sbuf_search_str_all()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sbuf_search_str_all </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsbuf.html">sbuf</a>&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>search</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>rv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>rc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>search for all occurances of a substring </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>the sbuf to search </td></tr>
+    <tr><td class="paramname">search</td><td>the substring to search for </td></tr>
+    <tr><td class="paramname">rv</td><td>return vector of indices </td></tr>
+    <tr><td class="paramname">rc</td><td>return vector count </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>an exit code, 0: found results, 1: no results, 2: memory error </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00129">129</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
 </div>
 </div>
@@ -779,7 +987,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00321">321</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00427">427</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
 <p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, and <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>.</p>
 
@@ -821,9 +1029,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00288">288</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00394">394</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>, and <a class="el" href="sbuf_8c_source.html#l00231">sbuf_clear()</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00023">sbuf::buf</a>, <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>, and <a class="el" href="sbuf_8c_source.html#l00337">sbuf_clear()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -861,9 +1069,9 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>an exit code, setting errno on failure </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00258">258</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sbuf_8c_source.html#l00364">364</a> of file <a class="el" href="sbuf_8c_source.html">sbuf.c</a>.</p>
 
-<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>, and <a class="el" href="sbuf_8c_source.html#l00126">sbuf_realloc()</a>.</p>
+<p class="reference">References <a class="el" href="sbuf_8h_source.html#l00017">sbuf::capacity</a>, <a class="el" href="sbuf_8h_source.html#l00019">sbuf::len</a>, and <a class="el" href="sbuf_8c_source.html#l00232">sbuf_realloc()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
