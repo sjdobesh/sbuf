@@ -25,7 +25,7 @@
  */
 int sbuf_is_full(sbuf s) {
   errno = 0;
-  if (s.buf == NULL) {
+  if (!s.buf) {
     errno = EPERM;
     return -1;
   }
@@ -40,11 +40,117 @@ int sbuf_is_full(sbuf s) {
  */
 int sbuf_is_empty(sbuf s) {
   errno = 0;
-  if (s.buf == NULL) {
+  if (!s.buf) {
     errno = EPERM;
     return -1;
   }
   return (s.len == 0);
+}
+
+/**
+ * search for a char
+ *
+ * @param s the sbuf to search
+ * @param c the char to search for
+ * @return index where char was found. -1 if error.
+ */
+int sbuf_search_char(sbuf s, char c) {
+  unsigned int i;
+  errno = 0;
+  for (i = 0; i < s.len; i++) {
+    if (s.buf[i] == c) {
+      return i;
+    }
+  }
+  errno = ENODATA;
+  return -1;
+}
+
+/**
+ * search for all instances of char
+ *
+ * @param s the sbuf to search
+ * @param c the char to search for
+ * @param rv return vector of indices
+ * @param rc return vector count
+ * @return an exit code, 0: found results, 1: no results, 2: memory error
+ */
+int sbuf_search_char_all(sbuf s, char c, int** rv, int* rc) {
+  unsigned int i;
+  *rc = 0;
+  errno = 0;
+  for (i = 0; i < s.len; i++) {
+    if (s.buf[i] == c) {
+      (*rc)++;
+      *rv = realloc(*rv, *rc);
+      if (!*rc) {
+        errno = ENOMEM;
+        return 2;
+      }
+      (*rv)[(*rc)-1] = i;
+    }
+  }
+  /* getting nothing will also be an error */
+  if (*rc == 0) {
+    errno = ENODATA;
+    return 1;
+  }
+  return 0;
+}
+
+/**
+ * search for a substring
+ *
+ * @param s the sbuf to search
+ * @param search the substring to search for
+ * @return index where substring is located
+ */
+int sbuf_search_str(sbuf s, char* search) {
+  char* result;
+  errno = 0;
+  result = strstr(s.buf, search);
+  if (!result) {
+    errno = ENODATA;
+    return -1;
+  }
+  /* difference is the index */
+  return (result - s.buf);
+}
+
+/**
+ * search for all occurances of a substring
+ *
+ * @param s the sbuf to search
+ * @param search the substring to search for
+ * @param rv return vector of indices
+ * @param rc return vector count
+ * @return an exit code, 0: found results, 1: no results, 2: memory error
+ */
+int sbuf_search_str_all(sbuf s, char* search, int** rv, int* rc) {
+  char* result;
+  unsigned int index;
+  unsigned int offset;
+  *rc = 0;
+  offset = 0;
+  errno = 0;
+  do {
+    result = strstr(s.buf+offset, search);
+    if (!result) {
+      errno = ENODATA;
+      return 1;
+    }
+    index = (result - s.buf);
+    offset += index;
+    (*rc)++;
+    *rv = realloc(*rv, *rc);
+    if (!*rc) {
+      errno = ENOMEM;
+      return 2;
+    }
+    (*rv)[(*rc)-1] = index;
+
+  } while (offset < s.len);
+  return 0;
 }
 
 /**
@@ -55,7 +161,7 @@ int sbuf_is_empty(sbuf s) {
  */
 void sbuf_print(sbuf s) {
   printf("SBUF [\n");
-  if (s.buf == NULL) {
+  if (!s.buf) {
     printf("  null buffer\n");
   } else {
     printf("  %lu / %lu\n", s.len, s.capacity);
@@ -81,7 +187,7 @@ sbuf new_sbuf_size(char* string, size_t capacity) {
   int len;
   errno = 0;
   s.buf = calloc(capacity + 1, 1); /* add room for '\0' */
-  if (s.buf == NULL) {
+  if (!s.buf) {
     errno = ENOMEM;
   } else {
     s.capacity = capacity;
@@ -127,7 +233,7 @@ int sbuf_realloc(sbuf* s, size_t new_capacity) {
   char* buf;
   errno = 0;
   buf = realloc(s->buf, new_capacity + 1);
-  if (buf == NULL) {
+  if (!buf) {
     errno = ENOMEM;
     return 1;
   }
@@ -172,7 +278,7 @@ void sbuf_free(sbuf* s) {
 int sbuf_append_str(sbuf* s, char* string) {
   int space, len;
   errno = 0;
-  if (s->buf == NULL) {
+  if (!s->buf) {
     errno = EPERM;
     return 1;
   }
@@ -205,7 +311,7 @@ int sbuf_append_str(sbuf* s, char* string) {
  */
 int sbuf_append_char(sbuf* s, char c) {
   errno = 0;
-  if (s->buf == NULL) {
+  if (!s->buf) {
     errno = EPERM;
     return 1;
   }
@@ -230,7 +336,7 @@ int sbuf_append_char(sbuf* s, char c) {
  */
 int sbuf_clear(sbuf* s){
   errno = 0;
-  if (s->buf == NULL) {
+  if (!s->buf) {
     errno = EPERM;
     return 1;
   }
@@ -303,7 +409,7 @@ int sbuf_set_str(sbuf* s, char* string) {
  * @return the char in s at index i. returns '\0' and sets errno on failure
  */
 char sbuf_get_index(sbuf s, size_t i) {
-  if (s.buf == NULL || i >= s.capacity) {
+  if (!s.buf || i >= s.capacity) {
     return '\0';
   } else {
     return s.buf[i];
@@ -319,7 +425,7 @@ char sbuf_get_index(sbuf s, size_t i) {
  * @return an exit code, setting errno on failure
  **/
 int sbuf_set_index(sbuf* s, size_t i, char c) {
-  if (s->buf == NULL || i >= s->capacity) {
+  if (!s->buf || i >= s->capacity) {
     return 1;
   } else {
     s->buf[i] = c;

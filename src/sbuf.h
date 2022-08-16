@@ -31,6 +31,11 @@ int sbuf_is_full(sbuf s);
 int sbuf_is_empty(sbuf s);
 /* print the buffer contents */
 void sbuf_print(sbuf s);
+/* search functions */
+int sbuf_search_char(sbuf s, char c);
+int sbuf_search_char_all(sbuf s, char c, int** rv, int* rc);
+int sbuf_search_str(sbuf s, char* search);
+int sbuf_search_str_all(sbuf s, char* search, int** rv, int* rc);
 
 /* ALLOCATION *---------------------------------------------------------------*/
 
