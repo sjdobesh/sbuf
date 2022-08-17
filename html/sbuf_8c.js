@@ -1,9 +1,9 @@
 var sbuf_8c =
 [
     [ "_POSIX_C_SOURCE", "sbuf_8c.html#a3024ccd4a9af5109d24e6c57565d74a1", null ],
-    [ "new_dsbuf", "sbuf_8c.html#a630ad6f1e57059532e0dc653cfc58fd1", null ],
-    [ "new_sbuf", "sbuf_8c.html#ab1bdc2c56a19ec478e30e16abff990ce", null ],
-    [ "new_sbuf_size", "sbuf_8c.html#a59d456bd5473278edfc1a6e2ca54f2f5", null ],
+    [ "sbuf_alloc", "sbuf_8c.html#ab6071c2b302a3521d3da5c6446e75ac9", null ],
+    [ "sbuf_alloc_dynamic", "sbuf_8c.html#ab941f6007db00fbf8d96a336dcde3e9c", null ],
+    [ "sbuf_alloc_size", "sbuf_8c.html#ac48754f50588bed4c59c3229e4f24a34", null ],
     [ "sbuf_append_char", "sbuf_8c.html#a97e40d2121ecddf068ac419612ac9cac", null ],
     [ "sbuf_append_str", "sbuf_8c.html#a2bfc168d116b6d08784cf0dcffd0c9f5", null ],
     [ "sbuf_clear", "sbuf_8c.html#a50e41d15ba5c283a1f341aa88bead9aa", null ],
