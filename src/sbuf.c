@@ -187,6 +187,7 @@ sbuf sbuf_alloc_size(char* string, size_t capacity) {
   sbuf s;
   int len;
   errno = 0;
+  s.buf = NULL;
   s.buf = calloc(capacity + 1, 1); /* add room for '\0' */
   if (!s.buf) {
     errno = ENOMEM;
